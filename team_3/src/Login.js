@@ -3,11 +3,13 @@ A React component that holds the sign-up/log-in area
 */
 
 import React, {useState} from 'react';
+import Button from '@mui/material/Button';
 import './Login.css';   //make this later
 
 const Login = () => {
     const onButtonClick = () => {
         // adjust this function later when we get pages to be linked togeter
+        alert("You did it!");
 
     }
 
@@ -75,7 +77,9 @@ const Login = () => {
                     className={'inputBox'}
                 />
               </div>
-              <button variant="contained">Create Project</button>
+              <Button variant="outlined" onClick={onButtonClick} >
+                Create Project
+              </Button>
             </div>
 
         </div>
