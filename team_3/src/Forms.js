@@ -4,6 +4,7 @@
  * @component
  */
 import React, { useState } from 'react';
+import './Forms.css';
 
 const initialValues = {
   userName: "",
@@ -92,7 +93,11 @@ function Form() {
           </p>
     
         </form>
+        
     </div>
+
+
+
   )
 }
 

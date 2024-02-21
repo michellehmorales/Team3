@@ -1,0 +1,35 @@
+.mainContainer {
+    display:flex;
+    justify-content: center;
+    flex-direction: row;
+}
+
+  .inputContainer {
+    display: flex;
+    flex-direction:row;
+    align-items:center;
+    justify-content: space-between; /* space-between aligngs the stuff nicely */
+    padding:5px;
+  }
+
+
+
+  .titleContainer {
+    float: left;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .titleContainer2 {
+    float: right;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .titleContainer3 {
+    float: left;
+    align-items: center;
+    flex-direction: column;
+  }
