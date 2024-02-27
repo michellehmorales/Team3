@@ -1,0 +1,17 @@
+Steps to make sure our files can run on everyone's computer:
+
+If you are having trouble figuring out why the react router stuff isn't working, consider the following steps:
+	Downloading react-router-dom
+	1) open up your terminal/powershell
+	2) set the path to your node_modules -> ".../node_modules"
+	3) type in the command
+		npm install react-router-dom
+	4) you should be all set for this part
+	
+	Downloading bootstrap
+	Downloading react-router-dom
+	1) open up your terminal/powershell
+	2) set the path to your node_modules -> ".../node_modules"
+	3) type in the command
+		npm install bootstrap
+	4) you should be all set for this part
