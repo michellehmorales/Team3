@@ -1,35 +1,35 @@
 .mainContainer {
-    display:flex;
-    justify-content: center;
-    flex-direction: row;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  margin-top: 200px;
 }
 
-  .inputContainer {
-    display: flex;
-    flex-direction:row;
-    align-items:center;
-    justify-content: space-between; /* space-between aligngs the stuff nicely */
-    padding:5px;
-  }
+.title {
+  font-size: xx-large;
+}
+
+.inputContainer {
+  display: flex;
+  flex-direction:column;
+  align-items:center;
+   /* space-between aligngs the stuff nicely */
+  padding:5px;
+}
 
 
+.titleContainer {
+  float: left;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px;
+}
 
-  .titleContainer {
-    float: left;
-    align-items: center;
-    flex-direction: column;
-    padding: 20px;
-  }
-
-  .titleContainer2 {
-    float: right;
-    align-items: center;
-    flex-direction: column;
-    padding: 20px;
-  }
-
-  .titleContainer3 {
-    float: left;
-    align-items: center;
-    flex-direction: column;
-  }
+.titleContainer2 {
+  float: right;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px;
+}

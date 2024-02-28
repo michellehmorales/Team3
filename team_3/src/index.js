@@ -6,6 +6,7 @@ import Form from './Forms';
 import Login from './Login';
 import Welcome from './Welcome';
 import reportWebVitals from './reportWebVitals';
+import Signup from './Signup';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
