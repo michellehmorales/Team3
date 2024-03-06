@@ -8,6 +8,7 @@ import { useParams } from 'react-router-dom';
 import './Welcome.css';
 import Login from "./Login";
 import Signup from "./Signup";
+import Projects from "./Projects";
 
 const onButtonClick = () => {
     // find out how to work with this
@@ -36,6 +37,14 @@ function Welcome() {
                 </Button>
             </Link>
           </li>
+          <li>
+            <Link to="/projects">
+            
+                <Button variant="outlined">
+                    Projects
+                </Button>
+            </Link>
+          </li>
         </ul>
       </nav>
 
@@ -43,6 +52,7 @@ function Welcome() {
         <Routes>
           <Route path="/signup" element={<Signup/>}></Route>
           <Route path="/login" element={<Login/>}></Route>
+          <Route path="/projects" element={<Projects/>}></Route>
         </Routes>
       </Router>
     </div>
