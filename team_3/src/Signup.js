@@ -9,15 +9,23 @@ const Signup = () => {
     const [passwordError, setError] = useState("");
 
     const onButtonClick = () => {
-        if(password != passwordError){
-            alert("Passwords do not match");
-        }
-        else if(password == "" || passwordError == ""){
-            alert("Type in password");
-        }
-        else{
-            //route to home page
-        }
+        // if(password != passwordError){
+        //     alert("Passwords do not match");
+        // }
+        // else if(password == "" || passwordError == ""){
+        //     alert("Type in password");
+        // }
+        // else{
+        //     //route to home page
+        // }
+
+        const requestOptions = {
+            method: 'POST', headers: {"Content-Type" : "application/json"},
+            body: JSON.stringify({'username':user})
+        };
+        
+
+
     }
 
 

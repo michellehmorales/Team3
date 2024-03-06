@@ -1,15 +1,9 @@
-/* /* .mainContainer {
+.Title{
+    font-size: xx-large;
     display:flex;
     align-items: center;
-    justify-content: center;
-    flex-direction: column;
 }
 
-.titleContainer {
-    font-size:xx-large;
-} */
-
-/* .titelContainer {
-    display:flex;
-    justify-content: space-between;
-}  */
+.mainContainer{
+    margin-top: 1000px;
+}

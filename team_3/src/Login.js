@@ -7,17 +7,38 @@ import Button from '@mui/material/Button';
 import './Login.css';   //make this later
 
 const Login = () => {
-    const onButtonClick = () => {
-        // adjust this function to search for the username and password.
-        //If match, want to move into home page
-        //Else, say that username/password was inputted incorrectly
-        alert("You did it!");
+    const onButtonClick = async(e1, e2) => {
+        console.log("Button was clicked")
 
+        const requestOptions = {
+            method: "GET"
+        }
+
+        await fetch('/username/', {
+            method:"POST",
+            headers: {"Content-Type" : "application/json"},
+            //mode: "cors",
+            body: JSON.stringify({'username':username})
+        })
+
+        await fetch('/password/', requestOptions)
+            .then(response => response.json())
+            .then(data => setPassword(data.password))
+            .then(console.log(password));
+
+        // useEffect(() => {
+        //     const requestOptions = {
+        //         method: 'GET'
+        //     }
+        //     fetch('/login', requestOptions)
+        //         .then(response => response.json())
+        //         //figure out how to work this one out
+        // })
+ 
     }
 
-    const [userName, setUserName] = useState('');
+    const [username, setUserName] = useState('');
     const [password, setPassword] = useState('');
-    //const [userID, setUserID] = useState('');
 
     return (
         <div className="mainContainer">
@@ -27,22 +48,23 @@ const Login = () => {
                 <div className={'inputContainer'}>
                     Username
                     <input
-                        value={userName}
-                        onChange={(ev) => setUserName(ev.target.value)}
+                        method=''
+                        value={username}
+                        onChange={(e1) => setUserName(e1.target.value)}
                         className={'inputBox'}
                         placeholder='Enter username'
                     />
                 </div>
 
-                <div className={'inputContainer'}>
+                {/* <div className={'inputContainer'}>
                     Password
                     <input
                         value={password}
-                        onChange={(ev) => setPassword(ev.target.value)}
+                        onChange={(e2) => setPassword(e2.target.value)}
                         className={'inputBox'}
                         placeholder='Enter password'
                     />
-                </div>
+                </div> */}
 
                 <Button variant="outlined" onClick={onButtonClick}>Sign in</Button>
 
