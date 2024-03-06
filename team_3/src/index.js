@@ -4,13 +4,12 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import Form from './Forms';
 import Login from './Login';
-import Welcome from './Welcome';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Welcome />
+    <App />
   </React.StrictMode>
 );
 
