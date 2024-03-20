@@ -5,6 +5,7 @@ import App from './App';
 import Form from './Forms';
 import Login from './Login';
 import reportWebVitals from './reportWebVitals';
+import Signup from './Signup';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

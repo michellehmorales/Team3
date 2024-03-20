@@ -7,79 +7,67 @@ import Button from '@mui/material/Button';
 import './Login.css';   //make this later
 
 const Login = () => {
-    const onButtonClick = () => {
-        // adjust this function later when we get pages to be linked togeter
-        alert("You did it!");
+    const onButtonClick = async(e1, e2) => {
+        console.log("Button was clicked")
 
+        const requestOptions = {
+            method: "GET"
+        }
+
+        await fetch('/username/', {
+            method:"POST",
+            headers: {"Content-Type" : "application/json"},
+            //mode: "cors",
+            body: JSON.stringify({'username':username})
+        })
+
+        await fetch('/password/', requestOptions)
+            .then(response => response.json())
+            .then(data => setPassword(data.password))
+            .then(console.log(password));
+
+        // useEffect(() => {
+        //     const requestOptions = {
+        //         method: 'GET'
+        //     }
+        //     fetch('/login', requestOptions)
+        //         .then(response => response.json())
+        //         //figure out how to work this one out
+        // })
+ 
     }
 
-    const [userName, setUserName] = useState('');
+    const [username, setUserName] = useState('');
     const [password, setPassword] = useState('');
-    const [userID, setUserID] = useState('');
 
     return (
         <div className="mainContainer">
             <div className={'titleContainer'}>
-            <div>New User? Sign-in</div>
+                <div className="title">Returning User? Login</div>
     
-            <div className={'inputContainer'}>
-                Username
-                <input
-                    value={userName}
-                    onChange={(ev) => setUserName(ev.target.value)}
-                    className={'inputBox'}
-                />
-            </div>
-            <div className={'inputContainer'}>
-                UserID
-                <input
-                    value={userID}
-                    onChange={(ev) => setUserID(ev.target.value)}
-                    className={'inputBox'}
-                />
-            </div>
-            <div className={'inputContainer'}>
-                Password
-                <input
-                    value={password}
-                    onChange={(ev) => setPassword(ev.target.value)}
-                    className={'inputBox'}
-                />
-            </div>
-
-            <button variant="contained">Sign in</button>
-
-            </div>
-
-            <div className='titleContainer2'>
-                <div>Create New Project</div>
                 <div className={'inputContainer'}>
-                  Username
-                  <input
-                      value={userName}
-                      onChange={(ev) => setUserName(ev.target.value)}
-                      className={'inputBox'}
-                   />
+                    Username
+                    <input
+                        method=''
+                        value={username}
+                        onChange={(e1) => setUserName(e1.target.value)}
+                        className={'inputBox'}
+                        placeholder='Enter username'
+                    />
                 </div>
-              
-              <div className='inputContainer'>
-                ProjectID
-                <input
-                    value={password}
-                    onChange={(ev) => setPassword(ev.target.value)}
-                    className={'inputBox'}
-                />
-              </div>
 
-              <div className='inputContainer'>
-                Project Description
-                <input
-                    className={'inputBox'}
-                />
-              </div>
-              <Button variant="outlined" onClick={onButtonClick} >
-                Create Project
-              </Button>
+                {/* <div className={'inputContainer'}>
+                    Password
+                    <input
+                        value={password}
+                        onChange={(e2) => setPassword(e2.target.value)}
+                        className={'inputBox'}
+                        placeholder='Enter password'
+                    />
+                </div> */}
+
+                <Button variant="outlined" onClick={onButtonClick}>Sign in</Button>
+
             </div>
 
         </div>

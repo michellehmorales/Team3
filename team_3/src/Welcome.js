@@ -18,7 +18,11 @@ const onButtonClick = () => {
 // React-Router 
 function Welcome() {
   return (
+    
     <div classname="mainContainer">
+    <div className="Title">
+      Welcome!
+    </div>
        <Router>
       <nav>
         <ul>
@@ -55,6 +59,7 @@ function Welcome() {
           <Route path="/projects" element={<Projects/>}></Route>
         </Routes>
       </Router>
+
     </div>
   );
 }
