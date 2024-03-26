@@ -5,24 +5,43 @@ import './Signup.css';
 const Signup = () => {
 
     const [user, setUser] = useState("");
+    const [userID, setUserID] = useState("");
     const [password, setPassword] = useState("");
     const [passwordError, setError] = useState("");
 
-    const onButtonClick = () => {
-        // if(password != passwordError){
-        //     alert("Passwords do not match");
-        // }
-        // else if(password == "" || passwordError == ""){
-        //     alert("Type in password");
-        // }
-        // else{
-        //     //route to home page
-        // }
+    const onButtonClick = async(e) => {
+        if(password != passwordError){
+            alert("Passwords do not match");
+        }
+        else if(user == "" || userID == "" || password == "" || passwordError == ""){
+            alert("Fill in all fields");
+        }
+        else{
+            const signedUp = await fetch("/sign_up/", {
+                method: "POST",
+                headers: {"Content-Type" : "application/json"},
+                //mode: "cors",
+                body: JSON.stringify({'user':user, 'userID':userID, 'password':password})
+            })
+
+            const data = await signedUp.json(); 
+            if (data == '-1'){
+                alert("Username already taken. Please use a different username.");
+            }
+                
+        }
 
         const requestOptions = {
-            method: 'POST', headers: {"Content-Type" : "application/json"},
-            body: JSON.stringify({'username':user})
-        };
+            method: "GET"
+        }
+    
+            
+    
+        // await fetch("/lastname/", requestOptions)
+        //     .then(response => response.json())
+        //     .then(data => getLastName(data.lastname))
+        //     .then(console.log(lastName));
+    
         
 
 
@@ -46,8 +65,17 @@ const Signup = () => {
 
                 <div className='inputContainer'>
                 <input
+                className="inputBox"
+                value={userID}
+                onChange={(ev) => setUserID(ev.target.value)}
+                placeholder='Enter userID'
+                />
+                </div>
+
+                <div className='inputContainer'>
+                <input
                 className='inputBox'
-                value={user.password}
+                value={password}
                 onChange={(ev) => setPassword(ev.target.value)}
                 placeholder='Enter password'
                 />

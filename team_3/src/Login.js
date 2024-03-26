@@ -7,64 +7,63 @@ import Button from '@mui/material/Button';
 import './Login.css';   //make this later
 
 const Login = () => {
-    const onButtonClick = async(e1, e2) => {
+    const [user, setUser] = useState("");
+    const [userID, setUserID] = useState("");
+    const [password, setPassword] = useState("");
+    
+    const onButtonClick = async(e) => {
         console.log("Button was clicked")
 
-        const requestOptions = {
-            method: "GET"
-        }
-
-        await fetch('/username/', {
-            method:"POST",
+        const loggedIn = await fetch("/log_in", {
+            method: "POST",
             headers: {"Content-Type" : "application/json"},
             //mode: "cors",
-            body: JSON.stringify({'username':username})
+            body: JSON.stringify({'user':user, 'userID':userID, 'password':password})
         })
 
-        await fetch('/password/', requestOptions)
-            .then(response => response.json())
-            .then(data => setPassword(data.password))
-            .then(console.log(password));
+        const data = await loggedIn.json(); 
+        if (data == '-1'){
+            alert("Login Failed.");
+        }
+        else{
+            alert("Login Successful.");
+            //log in successful 
+            //show projects
+        }
 
-        // useEffect(() => {
-        //     const requestOptions = {
-        //         method: 'GET'
-        //     }
-        //     fetch('/login', requestOptions)
-        //         .then(response => response.json())
-        //         //figure out how to work this one out
-        // })
- 
     }
-
-    const [username, setUserName] = useState('');
-    const [password, setPassword] = useState('');
 
     return (
         <div className="mainContainer">
             <div className={'titleContainer'}>
                 <div className="title">Returning User? Login</div>
     
-                <div className={'inputContainer'}>
-                    Username
-                    <input
-                        method=''
-                        value={username}
-                        onChange={(e1) => setUserName(e1.target.value)}
-                        className={'inputBox'}
-                        placeholder='Enter username'
-                    />
+                <div className='inputContainer'>
+                <input
+                className="inputBox"
+                value={user}
+                onChange={(ev) => setUser(ev.target.value)}
+                placeholder='Enter username'
+                />
                 </div>
 
-                {/* <div className={'inputContainer'}>
-                    Password
-                    <input
-                        value={password}
-                        onChange={(e2) => setPassword(e2.target.value)}
-                        className={'inputBox'}
-                        placeholder='Enter password'
-                    />
-                </div> */}
+                <div className='inputContainer'>
+                <input
+                className="inputBox"
+                value={userID}
+                onChange={(ev) => setUserID(ev.target.value)}
+                placeholder='Enter userID'
+                />
+                </div>
+
+                <div className='inputContainer'>
+                <input
+                className='inputBox'
+                value={password}
+                onChange={(ev) => setPassword(ev.target.value)}
+                placeholder='Enter password'
+                />
+                </div>
 
                 <Button variant="outlined" onClick={onButtonClick}>Sign in</Button>
 
