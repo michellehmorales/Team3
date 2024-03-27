@@ -24,7 +24,7 @@ function HWSetCheckInOut(props) {
     setInputValue(numericValue);
   }
 
-  const handleCheckIn = () => {
+  const handleCheckIn = async(e) => {
     availability = availabilityValue + parseInt(inputValue);
     if(availability > 200){
         setAvailabilityValue(200);
@@ -32,10 +32,20 @@ function HWSetCheckInOut(props) {
     else{
         setAvailabilityValue(availability);
     }
+
+    const response = await fetch("/checkIn_hardware", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({qty: inputValue, setName: "HWSet"+props.HWItems[0]})
+    })
+
+    const data = await response.json();
+    console.log(JSON.stringify(data.qty))
+    alert(JSON.stringify(data.qty) + " hardware checked in");
     
   }
 
-  const handleCheckOut = () => {
+  const handleCheckOut = async(e) => {
     availability = availabilityValue - parseInt(inputValue);
     if(availability < 0){
         setAvailabilityValue(0);
@@ -43,6 +53,16 @@ function HWSetCheckInOut(props) {
     else{
         setAvailabilityValue(availability);
     }
+
+    const response = await fetch("/checkOut_hardware", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({qty: inputValue, setName: "HWSet"+props.HWItems[0]})
+    })
+
+    const data = await response.json();
+    console.log(JSON.stringify(data.qty))
+    alert(JSON.stringify(data.qty) + " hardware checked Out");
   }
 
     return (

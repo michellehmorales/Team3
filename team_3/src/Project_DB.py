@@ -23,7 +23,6 @@ def user_exists(user):
         return '1'
 	 
 
-
 def write_user_db(user, userID, password):
     print("Processing write user")
     dbname = get_database()
@@ -47,6 +46,41 @@ def read_user_db(user, userID, password): #check if username and password match
          return '1'	
     else:
          return '-1'  
+    
+def read_HWSet(hw_name):
+    print("Processing read HW Set")
+    dbname = get_database()
+    collection_name = dbname["HWSets"]
+    myquery = {"HW_name": hw_name}
+    queryresult = collection_name.find_one(myquery)
+    print(queryresult['total'], queryresult['available'])
+    return queryresult['total'], queryresult['available'] #return array [total, available]
+
+def checkIn_HWSet(hw_name, qty):
+    print("Processing check in HW Set")
+    dbname = get_database()
+    collection_name = dbname["HWSets"]
+    myquery = {"HW_name": hw_name}
+    queryresult = collection_name.find_one(myquery)
+    if (queryresult['available'] + int(qty)) > queryresult['total']:
+        collection_name.update_one({'HW_name' : hw_name}, {"$set": {'available' : queryresult['total']}})
+    else:
+        collection_name.update_one({'HW_name' : hw_name}, {"$set": {'available' : (queryresult['available'] + int(qty))}})
+
+
+def checkOut_HWSet(hw_name, qty):
+    print("Processing check in HW Set")
+    dbname = get_database()
+    collection_name = dbname["HWSets"]
+    myquery = {"HW_name": hw_name}
+    queryresult = collection_name.find_one(myquery)
+    if (queryresult['available'] - int(qty)) < 0:
+        collection_name.update_one({'HW_name' : hw_name}, {"$set": {'available' : 0}})
+    else:
+        collection_name.update_one({'HW_name' : hw_name}, {"$set": {'available' : (queryresult['available'] - int(qty))}})
+
+    
+    
 	
 # class Project_DB():
 #     if __name__ == "__main__":	

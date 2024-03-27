@@ -53,5 +53,34 @@ def lastName():
 
     return json.dumps({'lastname':returnValue})
 
+@app.route("/get_HWSet/", methods=["POST"])
+def get_HWSet():
+    print('HWSet request working')
+    data = request.json
+    name = data['HW_name']
+    HWSet = Project_DB.read_HWSet(name)
+    return json.dumps({'total': HWSet[0], 'available' : HWSet[1]})
+
+@app.route('/checkIn_hardware', methods=['POST'])
+def checkIn_hardware():
+    data = request.json
+    set = data['setName']
+    qty = data['qty']
+
+    print('Recieved Qty:', qty)
+    Project_DB.checkIn_HWSet(set, qty)
+    return json.dumps({'qty': qty})
+
+@app.route('/checkOut_hardware', methods=['POST'])
+def checkOut_hardware():
+    data = request.json
+    set = data['setName']
+    qty = data['qty']
+
+    print('Recieved Qty:', qty)
+    Project_DB.checkOut_HWSet(set, qty)
+    return json.dumps({'qty': qty})
+    
+
 if __name__ == '__main__':
     app.run(host="0.0.0.0", debug=False, port=os.environ.get("PORT", 80))
