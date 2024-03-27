@@ -1,0 +1,18 @@
+.mainContainer {
+    display:flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 200px;
+  }
+
+.titleContainer {
+  font-size: xx-large;
+}
+
+  .inputContainer {
+    display: flex;
+    flex-direction:column;
+    align-items:center;
+     /* space-between aligngs the stuff nicely */
+    padding:5px;
+  }

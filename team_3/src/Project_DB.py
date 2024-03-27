@@ -79,6 +79,39 @@ def checkOut_HWSet(hw_name, qty):
     else:
         collection_name.update_one({'HW_name' : hw_name}, {"$set": {'available' : (queryresult['available'] - int(qty))}})
 
+
+
+def projectExists(id):
+    print("Processing if project exists")
+    dbname = get_database()
+    collection_name = dbname["Projects"]
+    myquery = {"ProjectID" : id}
+    queryresult = collection_name.find_one(myquery)
+    if queryresult == None:
+        return 1
+    else:
+        return -1
+
+    
+def createProject(name, id, description):
+    print("Creating project")
+    dbname = get_database()
+    collection_name = dbname["Projects"]
+    project_post = {"Name": name,
+                    "Description": description, 
+                    "ProjectID": id}
+    collection_name.insert_one(project_post)
+
+def getProject(id):
+    print("Retrieving Project")
+    dbname = get_database()
+    collection_name = dbname["Projects"]
+    myquery = {"ProjectID":id}
+    queryresult = collection_name.find_one(myquery)
+    return queryresult["Name"], queryresult["Description"]
+
+
+
     
     
 	

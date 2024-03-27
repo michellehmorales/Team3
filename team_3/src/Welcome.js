@@ -9,6 +9,8 @@ import './Welcome.css';
 import Login from "./Login";
 import Signup from "./Signup";
 import Projects from "./Projects";
+import Project_test from "./Project_test";
+import Existing_Project from "./Existing_Project";
 
 const onButtonClick = () => {
     // find out how to work with this
@@ -56,7 +58,7 @@ function Welcome() {
         <Routes>
           <Route path="/signup" element={<Signup/>}></Route>
           <Route path="/login" element={<Login/>}></Route>
-          <Route path="/projects" element={<Projects/>}></Route>
+          <Route path="/projects" element={<Existing_Project/>}></Route>
         </Routes>
       </Router>
 

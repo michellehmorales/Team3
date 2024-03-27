@@ -1,0 +1,14 @@
+.titleContainer {
+    font-size: xx-large;
+}
+
+.mainContainer {
+    align-items:center;
+    flex-direction: row;
+}
+
+.projectSpace {
+    align-items: center;
+    flex-direction: row;
+}
+

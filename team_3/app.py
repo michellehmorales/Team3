@@ -80,6 +80,40 @@ def checkOut_hardware():
     print('Recieved Qty:', qty)
     Project_DB.checkOut_HWSet(set, qty)
     return json.dumps({'qty': qty})
+
+@app.route('/createProject', methods=["POST"])
+def createProject():
+    data = request.json
+    name = data['projectName']
+    id = data['projectID']
+    descript = data['description']
+
+    result = Project_DB.projectExists(id)
+    if result == 1:
+        Project_DB.createProject(name, id, descript)
+        return '1'
+    elif result == -1:  # denotes that the name and id combo exists
+        return '-1'
+    
+global idInput
+@app.route('/id/', methods=["POST"])
+def checkOut_project():
+    data = request.json
+    global idInput
+    idInput = data['projectID']
+    return '1'
+
+@app.route("/name_description/", methods=["GET"])
+def getNameAndDescription():
+    result = Project_DB.projectExists(idInput)
+    if result == -1: # the project exists
+        name, description = Project_DB.getProject(idInput)
+        return json.dumps({'projectName':name, 'description':description})
+    else:
+        return json.dumps({'projectName':"Not available", 'description':"N/A"})
+
+
+
     
 
 if __name__ == '__main__':
